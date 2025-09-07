@@ -1,0 +1,14 @@
+[
+{
+  "directory": "/Users/rodoc/develop/exoclash/debug",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -I/Users/rodoc/develop/exoclash/stb -I/Users/rodoc/develop/exoclash/exoquant  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk -o CMakeFiles/clash.dir/clash.c.o -c /Users/rodoc/develop/exoclash/clash.c",
+  "file": "/Users/rodoc/develop/exoclash/clash.c",
+  "output": "CMakeFiles/clash.dir/clash.c.o"
+},
+{
+  "directory": "/Users/rodoc/develop/exoclash/debug",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -I/Users/rodoc/develop/exoclash/stb -I/Users/rodoc/develop/exoclash/exoquant  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk -o CMakeFiles/clash.dir/exoquant/exoquant.c.o -c /Users/rodoc/develop/exoclash/exoquant/exoquant.c",
+  "file": "/Users/rodoc/develop/exoclash/exoquant/exoquant.c",
+  "output": "CMakeFiles/clash.dir/exoquant/exoquant.c.o"
+}
+]
