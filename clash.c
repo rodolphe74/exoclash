@@ -167,7 +167,7 @@ int main(int argc, char **argv)
 {
     if (argc != 2) {
         printf("argc:%d\n", argc);
-        printf("arguments must be exactly [filename] [graphics mode]\n");
+        printf("arguments must be exactly [filename]\n");
         return 0;
     }
 
