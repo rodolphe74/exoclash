@@ -13,6 +13,8 @@
 #define STB_IMAGE_RESIZE_STATIC
 #include <stb_image_resize2.h>
 
+#include "thomson.h"
+
 #define HIGH_QUALITY 1
 
 typedef struct {
@@ -46,6 +48,8 @@ unsigned char mo5_palette[16 * 4] = {
     0x88, 0xFF, 0xFF, 0xFF, // 14 cyan clair
     0xFF, 0x88, 0x00, 0xFF  // 15 orange
 };
+
+
 
 static inline int color_error(const unsigned char *pix, const unsigned char *pal) {
     int dr = (int)pix[0] - (int)pal[0];
@@ -252,12 +256,47 @@ int main(int argc, char **argv)
 
     stbi_write_png("mo5_dither.png", xx, yy, 3, out, xx*3);
     
+
+    // save as mo5 ram bins 
+	IntVector pixels, colors;
+	init_vector(&pixels);
+	init_vector(&colors);
+    create_rams(out, mo5_palette, &pixels, &colors); 
+	// --- Création des fichiers binaires couleur et forme MO5
+	uint8_t header[] = {0x00, 0x1F, 0x40, 0x00, 0x00};
+	uint8_t footer[] = {0xFF, 0x00, 0x00, 0x00, 0x00};
+	uint8_t *pc = (uint8_t *)malloc(colors.size);
+	if (pc)
+		for (int i = 0; i < colors.size; i++) {
+			pc[i] = colors.data[i];
+		}
+	FILE *fc = fopen("COLORS.BIN", "wb");
+	fwrite(header, 1, 5, fc);
+	if (pc) fwrite(pc, 1, colors.size, fc);
+	fwrite(footer, 1, 5, fc);
+	fclose(fc);
+	free(pc);
+	uint8_t *pp = (uint8_t *)malloc(pixels.size);
+	if (pp)
+		for (int i = 0; i < pixels.size; i++) {
+			pp[i] = pixels.data[i];
+		}
+	FILE *fp = fopen("PIXELS.BIN", "wb");
+	fwrite(header, 1, 5, fc);
+	if (pp) fwrite(pp, 1, pixels.size, fp);
+	fwrite(footer, 1, 5, fc);
+	fclose(fp);
+	free(pp);
+
+
     // cleanings
     stbi_image_free(data);
     free(indexedPaletteData);
     free(dataResized);
     free(out);
     
+    free_vector(&pixels);
+    free_vector(&colors);
     
     return 0;
 }
