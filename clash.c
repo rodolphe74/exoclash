@@ -14,6 +14,7 @@
 #include <stb_image_resize2.h>
 
 #include "thomson.h"
+#include "k7.h"
 
 #define HIGH_QUALITY 1
 
@@ -288,6 +289,12 @@ int main(int argc, char **argv)
 	fclose(fp);
 	free(pp);
 
+    	// --- Ajout dans une k7 ---
+ 	FILE *fick7 = fopen("clash.k7", "wb");
+	ajouterFichier(fick7, "PIXELS.BIN");
+	ajouterFichier(fick7, "COLORS.BIN");
+	fclose(fick7);
+	printf("clash.k7 créé\n");
 
     // cleanings
     stbi_image_free(data);

@@ -55,5 +55,7 @@ dkms.conf
 *.dwo
 
 debug/
+build/
 xcode/
 .cache/
+.vscode/

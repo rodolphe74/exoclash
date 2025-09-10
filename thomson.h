@@ -67,7 +67,7 @@ void clash_fragment_to_palette_indexed_bloc(const unsigned char *fragment, uint8
             uint8_t gp = palette[i * 4 + 1];
             uint8_t bp = palette[i * 4 + 2];
 
-            if (rp == r && gp == g && bp == r) {
+            if (rp == r && gp == g && bp == b) {
                 idx = i;
                 break;
             }
